@@ -1,7 +1,7 @@
 import os
 import sys
 
-current_directory = os.path.dirname(__file__)
+current_directory = os.path.abspath(os.path.dirname(__file__))
 parent_directory = os.path.dirname(current_directory)
 module_name = os.path.basename(current_directory)
 
