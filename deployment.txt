@@ -1,0 +1,18 @@
+В данном проекте используется движок askbot.
+Дальше развёртки с ним не работал.
+
+Документация:
+- http://askbot.org/doc/index.html
+- google
+
+Деплой:
+- pip install -r requirements.txt
+- cd askbot_source
+- python setup.py develop
+- pip install -r askbot_requirements.txt
+- прописать settings_local.py с настройками БД, дебаггинга и другими пользовательскими настройками
+- syncdb
+- migrate
+
+ВАЖНО! При syncd НЕ создавать суперюзера, только после migrate.
+ВАЖНО! Не обновлять пакеты установленные через requirements, т.к. это почти гарантированно сломает движок.
