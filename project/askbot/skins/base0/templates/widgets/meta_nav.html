@@ -1,0 +1,37 @@
+{% import "macros.html" as macros%}
+
+  <li>
+    <a class="hdr-m-01"
+      id="navTags"
+      href="{% url tags %}"
+      {% if active_tab == 'tags' %}class="on"{% endif %}
+    >{% trans %}tags{% endtrans %}</a>
+  </li>
+  {% if settings.GROUPS_ENABLED %}
+  <span class="dropdown">  
+  <a
+    id="navGroups" 
+    {% if active_tab == 'groups' %}class="on"{% endif %}
+    href="{% url groups %}" data-target="#" >
+    {% trans %}people & groups{% endtrans %}
+  </a>
+  </span>
+  {%else%}
+  <li>
+    <a class="hdr-m-02"
+      id="navUsers"
+      href="{% url users %}"
+      {% if active_tab == 'users' %}class="on"{% endif %}
+    >{% trans %}users{% endtrans %}</a>
+  </li>
+  {% endif %}
+
+  {% if settings.BADGES_MODE == 'public' %}
+  <li>
+    <a class="hdr-m-03"
+    id="navBadges"
+    href="{% url badges %}"
+    {% if active_tab == 'badges' %}class="on"{% endif %}
+    >{% trans %}badges{% endtrans %}</a>
+  </li>
+  {% endif %}

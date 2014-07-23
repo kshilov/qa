@@ -1,0 +1,20 @@
+<!-- template header.html -->
+{% import "macros.html" as macros %}
+
+<!-- \\\header\\\ -->
+<div class="header-a">
+    <div class="header-a-padding">
+        <div class="header-logo">
+            <!-- TODO: move path to SKIN to settings -->
+            <a href="/"><img src="/static/default/skins/base0/media/images/header-logo.png"></a>
+            <span>Эксперты о здоровье</span>
+        </div>
+        <div class="header-menu">
+            <ul>
+            {% include "widgets/meta_nav.html" %}
+            {% include "widgets/user_navigation.html" %}
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>    
+</div>

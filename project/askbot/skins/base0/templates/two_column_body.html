@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body_class %}two-col{% endblock %}
+{% block body %}
+<div class="center-col">
+    <div class="padding">
+        <!-- // left coll // -->
+        <div class="left-coll">
+            {% block content%}
+            {% endblock%}
+        </div>
+        <!-- \\ left coll \\ -->
+            
+        <!-- // right coll // -->
+        <div class="right-coll">
+            {% block sidebar%}
+            {% endblock%}
+        </div>
+        <!-- \\ right coll \\ -->
+        <div class="clear"></div>
+    </div>
+  <br class="clear" />
+</div>
+{% endblock %}
