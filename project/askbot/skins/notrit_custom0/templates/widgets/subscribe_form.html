@@ -1,0 +1,59 @@
+	<div class="advises">
+        <div class="advices-lbl">Персональные ответы фармацевта</div>
+        <input id="name" name="name" class="advices-input-a" type="text" value="" placeholder="Имя" />
+        <input id="email" name="email" class="advices-input-a" type="text" value="" placeholder="E-mail" />
+        <button id="subscribe" class="btn-a">Подписаться</button>
+    </div>
+     
+    <div id="subscribe-success" class="mail_tooltip" style="display:none"></div>
+     
+{% block forejs %}
+<script type="text/javascript">
+    $('#subscribe-success').click(function () {
+            $('#subscribe-success').hide();
+    })
+ 
+    // Пример вызова:
+     
+    // subscribeAjax(input, submit, config, data)
+    // input - поле ввода
+    // submit - поле сабмит
+    // config - конфигурация для AJAX
+    // data - JSON по умолчанию (перезаписывается ключ email)
+     
+    new subscribeAjax(
+            $('#name'),
+        $("#email"), // INPUT
+        $("#subscribe"), // SUBMIT BUTTON
+        {
+              url: "http://aff.notrit.ru/list_subscribe/",
+              type: "POST",
+               success: function(result) {
+                    if (result['error']) {
+                        tip_invalidemail($("#gift-trigger-input"));
+                    }
+                    if (result['ok']) {
+                        // -- subscribed OK
+                    }
+               },
+               error: function() {
+                   tip_invalidemail($("#gift-trigger-input"));
+               }
+        },
+        {
+            // "id": 7,
+            "__lid": "ed6d3198ce",
+            "merge_vars": {
+                "groupings": [
+                    {
+                        "name": "subscribe_source",
+                        "groups": [
+                            "qa"
+                        ]
+                    }
+                ],
+            }
+       }
+    );
+</script>
+{% endblock %}

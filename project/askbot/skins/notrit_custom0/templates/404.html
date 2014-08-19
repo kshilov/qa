@@ -1,0 +1,27 @@
+{% extends "two_column_body.html" %}
+<!-- template 404.jinja.html -->
+{% block title %}{% spaceless %}{% trans %}Page not found{% endtrans %}{% endspaceless %}{% endblock %}
+{% block forestyle%}
+<style type="text/css">
+    form input { margin-right: 5px; }
+</style>
+{% endblock %}
+{% block content %}
+<h1>{% trans %}Page not found{% endtrans %}</h1>
+<div id="main-body">
+    <div style="padding:5px 0px 10px 0;line-height:25px;">
+        <h2>{% trans %}К сожалению данный раздел не найден.{% endtrans %}</h2>
+        <h3>
+        <div style="margin-top:5px">
+            <p>Предлагаем начать со <a href="http://qa.notrit.ru/temy">страницы тегов</a>, где вы сможете найти ответ на ЛЮБОЙ вопрос по здоровью.</p>
+            <center style="margin-top: 20px;">
+                <a href="http://qa.notrit.ru/temy/">ВПЕРЕД К ЗДОРОВЬЮ</a>
+            </center>
+        </div>
+        </h3>
+    </div>
+</div>
+{% endblock %}
+{% block endjs %}
+{% endblock %}
+<!-- end template 404.jinja.html -->

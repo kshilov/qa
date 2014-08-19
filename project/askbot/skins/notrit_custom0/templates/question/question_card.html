@@ -1,0 +1,99 @@
+{% import "macros.html" as macros %}
+<div class="question-full" data-post-id="{{ question.id }}">
+    <span class="question-c"></span>
+    <div class="question-full-head">
+        <div class="question-full-head-l">Вопрос</div>
+        <div class="question-full-head-r">
+        {# {{ macros.timeago(question.added_at) }}
+        <a href="{{ question.author.get_profile_url() }}">{{ question.author }}</a>
+        { question.author.get_profile_url() }} #}
+
+
+        <div class="box vote-buttons" style="display:inline; width: 200px;">
+            {% if favorited %}
+                <a class="button followed" 
+                    alt="{% trans %}click to unfollow {% endtrans %}">
+                    <div>{% trans %}Following{% endtrans %}</div>
+                    <div class='unfollow'>{% trans %}Unfollow{% endtrans %}</div>
+                </a>
+            {% else %}
+                <a class="button followed"
+                    alt="{% trans %}click to follow {% endtrans %}">
+                    {%trans %}Follow{%endtrans%}
+                </a>
+            {% endif %}
+        </div>
+
+
+            <!-- <a href="#" class="btn-follow">Следить</a> -->
+            <span>Вы можете следить за ответами</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="question-content">
+        <div class="question-votes vote-buttons">
+            {% include "question/question_vote_buttons.html" %}
+        </div>
+        <div id="post-id-{{question.id}}" class="question-full-a">
+            <div class="question-i-lbl"><a href="{{ question.get_absolute_url() }}">{{ thread.get_title()|escape }}</a></div>
+            <div class="question-i-info">
+                <div class="question-i-info-left">
+                <a href="{{ question.author.get_profile_url() }}" class="question-auth">{{ question.author }}</a>
+                <span class="question-date">{{ macros.timeago(question.added_at) }}</span>
+                </div>
+                <div class="question-i-info-left-tags">
+                {% include "question/question_tags.html" %}
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="question-i-txt">
+                {{ question.summary }}
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="post-controls" style="float:right; margin-right: 30px;">
+        {% include "question/question_controls.html" %}
+    </div>
+    {% if thread.closed %}
+        <div class="clearfix"></div>
+        {# ==== START: question/closed_question_info.html ==== #}
+        {% include "question/closed_question_info.html" %}
+        {# ==== END: question/closed_question_info.html ==== #}
+    {% endif %}
+    {# {% include "question/question_comments.html" %} #}
+    <!-- <a href="#" class="question-answer-btn">Ответить</a> -->
+</div>
+<div class="_post-comment">
+    {% include "question/question_comments.html" %}
+</div>
+<!-- <div class="post question" data-post-id="{{ question.id }}">
+    <div class="vote-buttons">
+        {% include "question/question_vote_buttons.html" %}
+
+        {# {% include "question/share_buttons.html" %} #}
+    </div>
+    <div id="post-id-{{question.id}}" class="post-content{% if question.deleted %} deleted{% endif %}">
+        <h1><a href="{{ question.get_absolute_url() }}">{{ thread.get_title()|escape }}</a></h1>
+        {% include "question/question_author_info.html" %}
+        {% include "question/question_tags.html" %}
+        <div class="clearfix"></div>
+
+        <div class="post-body">
+            {# <div class="post-update-info-container">
+                {% include "question/question_author_info.html" %}
+            </div> #}
+            {{ question.summary }}
+        </div>
+        <div id="question-controls" class="post-controls">
+            {% include "question/question_controls.html" %}
+        </div>
+        {% if thread.closed %}
+            <div class="clearfix"></div>
+            {# ==== START: question/closed_question_info.html ==== #}
+            {% include "question/closed_question_info.html" %}
+            {# ==== END: question/closed_question_info.html ==== #}
+        {% endif %}
+        {% include "question/question_comments.html" %}
+    </div>
+</div> -->

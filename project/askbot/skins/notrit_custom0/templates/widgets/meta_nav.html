@@ -1,0 +1,39 @@
+{% import "macros.html" as macros%}
+<a 
+  id="navTags"
+  href="{% url tags %}"
+  {% if active_tab == 'tags' %}class="on"{% endif %}
+>{% trans %}tags{% endtrans %}</a>
+{% if settings.GROUPS_ENABLED %}
+<span class="dropdown">
+<a
+  id="navGroups" 
+  {% if active_tab == 'groups' %}class="on"{% endif %}
+  href="{% url groups %}" data-target="#" >
+  {% trans %}people & groups{% endtrans %}
+</a>
+</span>
+{%else%}
+<a 
+  id="navUsers"
+  href="{% url users %}"
+  {% if active_tab == 'users' %}class="on"{% endif %}
+>{% trans %}users{% endtrans %}</a>
+{% endif %}
+{% if settings.BADGES_MODE == 'public' %}
+<a 
+  id="navBadges"
+  href="{% url badges %}"
+  {% if active_tab == 'badges' %}class="on"{% endif %}
+>{% trans %}badges{% endtrans %}</a>
+{% if not request.user.is_authenticated() %}
+  {% if settings.USE_ASKBOT_LOGIN_SYSTEM %}
+    <a id="navLogin" href="{{ settings.LOGIN_URL }}?next={{request.path|clean_login_url|escape}}">{% trans %}вход{% endtrans %}</a>
+  {% endif %}
+  {% else %}
+    {% if settings.USE_ASKBOT_LOGIN_SYSTEM %}
+         <a id="navLogin" href="{{ settings.LOGOUT_URL }}?next={{ settings.LOGOUT_REDIRECT_URL }}">{% trans %}sign out{% endtrans %}</a>
+    {% endif %}
+    {{ macros.moderation_items_link(request.user, moderation_items) }}
+{% endif %}
+{% endif %}

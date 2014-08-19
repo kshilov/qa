@@ -1,0 +1,8 @@
+<a 
+    id="logo" 
+    href="{% if settings.LOGO_DESTINATION_URL %}{{ settings.LOGO_DESTINATION_URL }}{% else %}{% url questions %}{% endif %}"
+><img
+    src="/askbot/upfiles/header-logo.png"
+    alt="{% trans site=settings.APP_SHORT_NAME %}{{site}} logo{% endtrans %}"/>
+</a> 
+<span class="logo-slogan">Эксперты о здоровье</span>
