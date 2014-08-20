@@ -31,7 +31,6 @@
     */
      
     var subscribeAjax = function(name, input, submit, config, data) {
-     
         this.active = {
             name: name,
             input: input,
@@ -48,6 +47,7 @@
             "apikey": 0,
             "__lid": 0, //здесь будет ID листа подписки
             "email": "",
+            "validName":true,
             "name": "",
             "merge_vars": {
                 "groupings": [
@@ -75,14 +75,18 @@
         this.submit = function() {
             // Validate
             var email = $(this.active.input).val();
-            if (!this.config.validReg.email.test(email)) {
-                this.alert(); return false;
-            } else {
-                 this.unalert();
+            var name = $(this.active.name).val();
+            if (this.data.validName){
+            	if(name.length < 1){
+            		this.alert(this.active.name); return false;
+            	}else{
+            		this.unalert(this.active.name);
+            	}
             }
-            var name = "";
-            if (this.active.name != null && this.active.name != ""){
-                    name = $(this.active.name).val();
+            if (!this.config.validReg.email.test(email)) {
+                this.alert(this.active.input); return false;
+            } else {
+                 this.unalert(this.active.input);
             }
            
             // Prepare
@@ -100,6 +104,9 @@
                 data: data,
                 dataType: 'json',
                 cache: false,
+                xhrFields: {
+      				withCredentials: true
+   				},
                 error: function(response) {
                     if ("function" == typeof that.config.error) that.config.error.call(that, response); else alert('Ошибка сервера');
                 },
@@ -111,19 +118,15 @@
             // jQuery ajax
             $.ajax(options);
         };
-         this.alert = function() {
-        $(this.active.input).css({
+         this.alert = function(field) {
+        	$(field).css({
                 background: "#ffdada"
             });
         };
-        this.unalert = function() {
-            $(this.active.input).css({
+        this.unalert = function(field) {
+            $(field).css({
                 background: ""
             });
-            $('#name').val('');
-            $('#email').val('');
-            $('#subscribe-success').text('Спасибо, а теперь проверьте вашу почту!');
-            $('#subscribe-success').show();
         };
         this.init();
     };

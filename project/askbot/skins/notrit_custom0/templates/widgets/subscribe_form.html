@@ -33,7 +33,10 @@
                         tip_invalidemail($("#gift-trigger-input"));
                     }
                     if (result['ok']) {
-                        // -- subscribed OK
+                        $('#name').val('');
+            			$('#email').val('');
+            			$('#subscribe-success').text('Спасибо, а теперь проверьте вашу почту!');
+            			$('#subscribe-success').show();
                     }
                },
                error: function() {
